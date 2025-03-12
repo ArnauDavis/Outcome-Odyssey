@@ -18,7 +18,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.1",
     "mongodb": "^3.6.5",
-    "mongoose": "^8.11.0",
+    "mongoose": "^8.12.1",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.9",
     "passport": "^0.6.0",

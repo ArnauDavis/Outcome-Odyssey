@@ -74,23 +74,23 @@ const User = require('../models/User')
       password: req.body.password
     })
   
-    User.findOne({$or: [
-      {email: req.body.email},
-      {userName: req.body.userName}
-    ]}, (err, existingUser) => {
-      if (err) { return next(err) }
+    User.findOne({ $or: [
+      { email: req.body.email },
+      { userName: req.body.userName }
+    ] }).then(existingUser => {
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address or username already exists.' })
         return res.redirect('../signup')
       }
-      user.save((err) => {
-        if (err) { return next(err) }
-        req.logIn(user, (err) => {
-          if (err) {
-            return next(err)
-          }
-          res.redirect('/todos')
-        })
+      return user.save()
+    }).then(() => {
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err)
+        }
+        res.redirect('/todos')
       })
-    })
-  }
+      }).catch(err => {
+        return next(err)
+      })
+    }
