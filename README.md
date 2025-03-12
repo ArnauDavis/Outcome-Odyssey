@@ -14,12 +14,12 @@
 
 
 
-# Things to add
+# Things to do
+
+  style pages
+  add outcomes to each task
 
 
-  - PORT: 2121 (can be any port example: 3000) 
-  - DB_STRING: `your database URI` 
- ---
  
 
 
