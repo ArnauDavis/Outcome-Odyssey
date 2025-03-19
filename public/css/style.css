@@ -1,5 +1,47 @@
+:root{
+    /* colors */
+    --red: #EF476F;
+    --yellow: #FFD166;
+    --green: #06D6A0;
+    --blue: #118AB2;
+    --navy: #073B4C;
+    --black: #1B1B1E;
+
+    /* spacing */
+    --size0: 4px;
+    --size1: 8px;
+    --size2: 12px;
+    --size3: 16px;
+    --size4: 20px;
+    --size5: 28px;
+    --size6: 40px;
+    --size7: 60px;
+    --size8: 100px;
+    --size9: 160px;
+    --size10: 240px;
+    --size20: 800px;
+    --size21: 1100px;
+
+    /* font sizing */
+    --fontSize0: 4px;
+    --fontSize1: 8px;
+    --fontSize2: 12px;
+    --fontSize3: 16px;
+    --fontSize4: 20px;
+    --fontSize5: 28px;
+    --fontSize6: 40px;
+    --fontSize7: 60px;
+    --fontSize8: 100px;
+    --fontSize9: 160px;
+}
+
+body{
+    background: var(--black);
+    color: var();
+}
+
 h1{
-    color: red;
+    color: var();
 }
 .completed{
     text-decoration: line-through;
@@ -8,3 +50,20 @@ h1{
 .not{
     text-decoration: underline;
 }
+
+.landingCon{
+    display: flex;
+    flex-direction: row;
+}
+
+.introBox{
+    align-self: flex-start;
+}
+
+.welcomeBox{
+    align-self: flex-end;
+}
+
+
+
+
