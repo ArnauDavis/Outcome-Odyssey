@@ -7,6 +7,8 @@ router.get('/', ensureAuth, todosController.getTodos)
 
 router.post('/createTodo', todosController.createTodo)
 
+router.post('/addOutcome', ensureAuth, todosController.addOutcome)
+
 router.put('/markComplete', todosController.markComplete)
 
 router.put('/markIncomplete', todosController.markIncomplete)

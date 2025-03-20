@@ -1,4 +1,5 @@
-const Todo = require('../models/Todo')
+const { Todo, Outcome } = require('../models/Todo')
+
 
 module.exports = {
     getTodos: async (req,res)=>{
@@ -6,7 +7,8 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
+            const outcomeItems = await Outcome.find({userId:req.user.id})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, outcomes: outcomeItems})
         }catch(err){
             console.log(err)
         }
@@ -15,6 +17,15 @@ module.exports = {
         try{
             await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
             console.log('Todo has been added!')
+            res.redirect('/todos')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    addOutcome: async (req, res)=>{
+        try{
+            await Outcome.create({outcome: req.body.outcomeItem, userId: req.user.id})
+            console.log('Outcome has been added!')
             res.redirect('/todos')
         }catch(err){
             console.log(err)

@@ -36,12 +36,12 @@
 }
 
 body{
-    background: var(--black);
-    color: var();
+    background: black;
+    color: white;
 }
 
 h1{
-    color: var();
+    color: white;
 }
 .completed{
     text-decoration: line-through;
