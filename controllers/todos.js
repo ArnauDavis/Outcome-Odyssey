@@ -1,4 +1,6 @@
-const { Todo, Outcome } = require('../models/Todo')
+const Todo = require('../models/Todo')
+const Outcome = require('../models/Outcome')
+
 
 
 module.exports = {
@@ -6,9 +8,13 @@ module.exports = {
         console.log(req.user)
         try{
             const todoItems = await Todo.find({userId:req.user.id})
+            // For each todo item, fetch the outcomes related to it
+        for (let todo of todoItems) {
+            const outcomes = await Outcome.find({ todoId: todo._id, userId: req.user.id })
+            todo.outcomes = outcomes // Add the outcomes to the todo item
+        }
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            const outcomeItems = await Outcome.find({userId:req.user.id})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user, outcomes: outcomeItems})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
         }catch(err){
             console.log(err)
         }
@@ -17,15 +23,6 @@ module.exports = {
         try{
             await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
             console.log('Todo has been added!')
-            res.redirect('/todos')
-        }catch(err){
-            console.log(err)
-        }
-    },
-    addOutcome: async (req, res)=>{
-        try{
-            await Outcome.create({outcome: req.body.outcomeItem, userId: req.user.id})
-            console.log('Outcome has been added!')
             res.redirect('/todos')
         }catch(err){
             console.log(err)

@@ -19,12 +19,11 @@
             <li class='todoItem' data-id='<%=el._id%>'>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <ul>
-                    <% outcomes.filter(ell => ell.todoId === el._id).forEach( ell => { %>
-                        <li class='todoItem' data-id='<%=ell._id%>'>
-                            <span class=''><%= ell.outcome %></span>
-                            <button class=''>Delete</button>
+                    <% todo.outcomes.forEach(outcome => { %>
+                        <li class="outcome">
+                            <p><%= outcome.description %></p>
                         </li>
-                    <% }) %>    
+                    <% }) %>  
                 </ul>
                 <form action="/todos/addOutcome" method='POST'>
                     <input type="text" placeholder="Add Outcome" name='outcomeItem'>

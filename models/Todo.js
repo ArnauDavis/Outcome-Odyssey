@@ -15,17 +15,6 @@ const TodoSchema = new mongoose.Schema({
   },
 })
 
-const OutcomeSchema = new mongoose.Schema({
-  outcome: [{
-    type: String
-  }],
-  userId: {
-    type: String,
-    required: true
-  },
-})
 
-module.exports = {
-  Todo: mongoose.model('Todo', TodoSchema),
-  Outcome: mongoose.model('Outcome', OutcomeSchema)
-}
+
+module.exports = mongoose.model('Todo', TodoSchema)
